@@ -5,26 +5,52 @@
 
 // Définition des constantes avec enum
 typedef enum {
-    TAILLE_PIOCHE = 88,  
-    TAILLE_MAIN = 12     
+    TAILLE_PIOCHE = 88,  // Nombre total de chevalets
+    TAILLE_MAIN = 12     // Nombre de chevalets par joueur
 } Constantes;
 
-
+// Tableau des fréquences des lettres
 typedef enum {
-    A = 9, B = 1, C = 2, D = 3, E = 14, 
-    F = 1, G = 1, H = 1, I = 7, J = 1,  
-    L = 5, M = 3, N = 6, O = 5, P = 2,  
-    Q = 1, R = 6, S = 7, T = 6, U = 5,  
-    V = 2             
+    A = 9, B = 1, C = 2, D = 3, E = 14, // A, B, C, D, E
+    F = 1, G = 1, H = 1, I = 7, J = 1,  // F, G, H, I, J
+    L = 5, M = 3, N = 6, O = 5, P = 2,  // L, M, N, O, P
+    Q = 1, R = 6, S = 7, T = 6, U = 5,  // Q, R, S, T, U
+    V = 2                              // V
 } Lettres;
 
-
+// Fonction pour remplir la pioche avec les lettres selon leurs fréquences
 void remplir_pioche(char* pioche) {
     int index = 0;
-    for (int lettre = A; lettre <= V; lettre++) {
-        int freq = lettre; 
+    // Remplissage de la pioche avec les lettres en fonction de leurs fréquences
+    for (char lettre = 'A'; lettre <= 'V'; lettre++) {
+        int freq;
+        switch (lettre) {
+        case 'A': freq = A; break;
+        case 'B': freq = B; break;
+        case 'C': freq = C; break;
+        case 'D': freq = D; break;
+        case 'E': freq = E; break;
+        case 'F': freq = F; break;
+        case 'G': freq = G; break;
+        case 'H': freq = H; break;
+        case 'I': freq = I; break;
+        case 'J': freq = J; break;
+        case 'L': freq = L; break;
+        case 'M': freq = M; break;
+        case 'N': freq = N; break;
+        case 'O': freq = O; break;
+        case 'P': freq = P; break;
+        case 'Q': freq = Q; break;
+        case 'R': freq = R; break;
+        case 'S': freq = S; break;
+        case 'T': freq = T; break;
+        case 'U': freq = U; break;
+        case 'V': freq = V; break;
+        default: freq = 0; break;
+        }
+        // Ajouter les lettres dans la pioche selon leur fréquence
         for (int i = 0; i < freq; i++) {
-            pioche[index++] = 'A' + (lettre - A);  
+            pioche[index++] = lettre;
         }
     }
     pioche[index] = '\0'; // Terminer la chaîne de caractères
@@ -63,6 +89,8 @@ void trier_main(char* main) {
     }
 }
 
+
+
 int main() {
     srand(time(NULL)); // Initialiser le générateur aléatoire
 
@@ -84,12 +112,8 @@ int main() {
     trier_main(main_joueur1);
     trier_main(main_joueur2);
 
-    // Afficher les mains des joueurs
-    printf("Joueur 1 : %s\n", main_joueur1);
-    printf("Joueur 2 : %s\n", main_joueur2);
-
-    // Afficher la taille restante de la pioche
-    printf("Pioche restante : %d lettres\n", taille_pioche);
+    printf("1 :  %s\n", main_joueur1);
+    printf("2 :  %s\n", main_joueur2);
 
     return 0;
 }
