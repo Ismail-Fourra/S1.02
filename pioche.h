@@ -3,6 +3,7 @@ typedef enum {
     TAILLE_MAIN = 12     // Nombre de chevalets par joueur
 } Constantes;
 
+
 // Tableau des fréquences des lettres
 typedef enum {
     A, B, C, D, E, F, G, H, I, J, L, M, N, O, P, Q, R, S, T, U, V
