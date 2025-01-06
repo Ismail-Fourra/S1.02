@@ -1,28 +1,23 @@
-#pragma warning (disable : 4996)
-
-#include <string.h>
+// main.c
 #include <stdio.h>
+#include <stdlib.h>
+#include "dictionnaire.h"  // Inclusion du fichier d'en-tête
 
 int main() {
-	FILE* f = fopen("ods4.txt", "r");
-	if (f == NULL) {
-		printf("fichier non accessible\n");
-		return;
-	}
-	size_t nbm = 0, nbc = 0;
-	char mot[30] = { 0 };
-	int n;
-	n = fscanf(f, "%29s", mot);
-	while (n == 1) {
-		++nbm;
-		nbc += strlen(mot);
-		n = fscanf(f, "%29s", mot);
-	}
-	if (ferror(f))
-		printf("erreur - %s\n", strerror(errno));
-	else
-		printf("nbre de mots : %zd, nbre moyen de lettres : %.2f\n", nbm, nbc / (float)nbm);
-	fclose(f);
+    char** dictionnaire = NULL;
+    int taille = dico(&dictionnaire);
+
+    if (taille > 0) {
+        printf("Dictionnaire chargé avec succès, nombre de mots : %d\n", taille);
+        for (int i = 0; i < taille; i++) {
+            printf("%s\n", dictionnaire[i]);
+            free(dictionnaire[i]);
+        }
+        free(dictionnaire);
+    }
+    else {
+        printf("Échec du chargement du dictionnaire\n");
+    }
+
+    return 0;
 }
-
-
