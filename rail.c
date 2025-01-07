@@ -25,21 +25,16 @@
 */
 
 void inverserRail(Rails* rail_jeu) {
-    int len = strlen(rail_jeu->recto);  // Longueur de la chaîne recto
+    
 
-    // Vérifier que la chaîne recto est valide et terminée par un caractère nul
-    if (len > MAX_RAIL - 1) {
-        printf("Erreur : La longueur du recto dépasse la taille maximale.\n");
-        return;
-    }
 
     // Boucle pour inverser les caractères du recto dans le verso
-    for (int i = 0; i < len; ++i) {
-        rail_jeu->verso[i] = rail_jeu->recto[len - 1 - i];
+    for (int i = 0; i < (MAX_RAIL-1); ++i) {
+        rail_jeu->verso[i] = rail_jeu->recto[(MAX_RAIL - 1) - 1 - i];
     }
 
     // Ajout du caractère nul à la fin de la chaîne verso
-    rail_jeu->verso[len] = '\0';
+    rail_jeu->verso[(MAX_RAIL - 1)] = '\0';
 
     // Affichage du résultat
     printf("V: %s\n", rail_jeu->verso);
