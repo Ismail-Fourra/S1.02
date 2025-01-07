@@ -3,5 +3,8 @@
 
 #define CHAINE 100  // Définition de la taille du buffer
 
-int dico(char** tableau);  // Déclaration de la fonction
+
+
+int estDansDictionnaire(const char* mot);  // Déclaration de la fonction
+
 
