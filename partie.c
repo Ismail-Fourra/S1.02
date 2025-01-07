@@ -4,6 +4,7 @@
 #include <string.h>
 #include "pioche.h"
 #include "joueur.h"
+#include "rail.h"
 
 
 // Fonction pour démarrer la partie
@@ -35,11 +36,13 @@ void demarrer_partie() {
     printf("2 :  %s\n", main_joueur2);
 
     // Demander à chaque joueur de saisir un mot de 4 lettres
-    char mot_joueur1[TAILLE_MAXMOTS], mot_joueur2[TAILLE_MAXMOTS];
+    char mot1[TAILLE_MAXMOTS], mot2[TAILLE_MAXMOTS];
 
     // Saisie pour joueur 1
-    demander_mot(mot_joueur1, 1);
+    demander_mot(mot1, 1);
 
     // Saisie pour joueur 2
-    demander_mot(mot_joueur2, 2);
+    demander_mot(mot2, 2);
+    Rails* rail_jeu[MAX_RAIL];
+    initRail(mot1, mot2, rail_jeu);
 }
