@@ -30,7 +30,7 @@ void inverserRail(Rails* rail_jeu) {
 
     // Boucle pour inverser les caractères du recto dans le verso
     for (int i = 0; i < (MAX_RAIL-1); ++i) {
-        rail_jeu->verso[i] = rail_jeu->recto[(MAX_RAIL - 1) - 1 - i];
+        rail_jeu->verso[i] = rail_jeu->recto[(MAX_RAIL - 1) -1 - i]; //Les -1 permettent de sauter les deux caractères vides (/0), sans eux, le programme ne compile pas correctement
     }
 
     // Ajout du caractère nul à la fin de la chaîne verso
