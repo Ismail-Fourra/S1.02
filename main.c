@@ -11,7 +11,7 @@ int main() {
 
     // D�marrer la partie
     Partie* octoverso;
-    demarrer_partie(octoverso);
+    demarrer_partie(&octoverso);
 
     return 0;
 }

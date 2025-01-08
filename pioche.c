@@ -4,58 +4,57 @@
 #include <string.h>
 #include "joueur.h"
 #include "pioche.h"
+#include "partie.h"
 
 
 
 
 // Fonction d'initialisation de la pioche
-void initialiserPioche(Lettre pioche[]) {
-    // Définition des lettres de A à V et leurs fréquences
-    char lettres[] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V' };
-    int frequences[] = { 9, 1, 2, 3, 14, 1, 1, 1, 7, 1, 0, 5, 3, 6, 5, 2, 1, 1, 7, 6, 5, 2 }; // Fréquences fournies
-
-    // Initialisation de la pioche avec les lettres et fréquences
+void initialiser_Pioche(Partie* jeu) {
+    
+    char lettresJeu[NB_LETTRES] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V' };
+    int frequencesJeu[NB_LETTRES] ={9, 1, 2, 3, 14, 1, 1, 1, 7, 1, 5, 3, 6, 5, 2, 1, 6, 7, 6, 5, 2};
     int index = 0;
-    for (int i = 0; i < 22; i++) {
-        for (int j = 0; j < frequences[i]; j++) {
-            pioche[index].lettre = lettres[i];
-            pioche[index].frequence = frequences[i];
-            index++;
-        }
-    }
-}
 
-int main() {
-    Lettre pioche[TAILLE_PIOCHE];
-    initialiserPioche(pioche);
-
-    // Affichage des lettres et de leurs fréquences
-    for (int i = 0; i < TAILLE_PIOCHE; i++) {
-        printf("%c : %d\n", pioche[i].lettre, pioche[i].frequence);
+    malloc();
+    for (int i = 0; i < NB_LETTRES; ++i) {
+        for (int j = index; j < frequencesJeu[i]+index; ++j) {
+            jeu->pioche[j] = lettresJeu[i];
+           
+        } 
+        ++index;
     }
 
-    return 0;
+   
+
+   
+    
 }
 
 
 // Fonction pour mélanger un tableau de caractères
-void melanger_chevalets(char* chevalets, int taille) {
-    for (int i = taille - 1; i > 0; i--) {
+void melanger_chevalets(char* pioche) {
+    for (int i = TAILLE_PIOCHE; i > 0; i--) {
         int j = rand() % (i + 1);
-        char temp = chevalets[i];
-        chevalets[i] = chevalets[j];
-        chevalets[j] = temp;
+        char temp = pioche[i];
+        pioche[i] = pioche[j];
+        pioche[j] = temp;
     }
 }
 
+
 // Fonction pour tirer une main de chevalets
-void tirer_main(char* pioche, Joueur* joueur_act, int taille_main, int* taille_pioche) {
-    for (int i = 0; i < taille_main; i++) {
-        joueur_act->main_joueur[i] = pioche[*taille_pioche - 1];
-        (*taille_pioche)--;
+void tirer_main(Partie* jeu, Joueur* joueur_act) {
+
+    int nb = 0;
+    int taille_pio = (char*)malloc(sizeof(TAILLE_PIOCHE) - nb);
+    for (int i = 0; i < TAILLE_MAIN; i++) {
+        int j = rand() % (TAILLE_PIOCHE - nb);
+        joueur_act->main_joueur[i] = jeu->pioche[j];
+        jeu->pioche[TAILLE_PIOCHE - nb];
+        ++nb;
     }
-    joueur_act->main_joueur[taille_main] = '\0'; // Terminer la chaîne de caractères
-}
+
 
 // Fonction pour trier une chaîne de caractères par ordre alphabétique
 void trier_main(char* main) {

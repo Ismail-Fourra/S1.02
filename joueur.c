@@ -29,13 +29,13 @@ void affiche_main(Joueur* joueur_act) {
     printf("%d :  %s\n", joueur_act->NoJoueur, joueur_act->main_joueur);
 }
 
-void creation_joueur(char* pioche, Joueur* joueur1, Joueur* joueur2) {
+void creation_joueur(Partie* jeu, Joueur* joueur1, Joueur* joueur2) {
     joueur1->NoJoueur = 1;
     joueur2->NoJoueur = 2;
     int taille_pioche = TAILLE_PIOCHE;
 
-    tirer_main(pioche, joueur1, TAILLE_MAIN, &taille_pioche);
-    tirer_main(pioche, joueur2, TAILLE_MAIN, &taille_pioche);
+    tirer_main(jeu->pioche, joueur1);
+    tirer_main(jeu->pioche, joueur2);
     trier_main(joueur1);
     trier_main(joueur2);
 

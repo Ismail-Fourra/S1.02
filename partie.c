@@ -22,8 +22,10 @@
 // Fonction pour d�marrer la partie
 void demarrer_partie(Partie* jeu) {
     srand(time(NULL));
-    remplir_pioche(jeu->pioche);
-    melanger_chevalets(jeu->pioche, TAILLE_PIOCHE);
+    
+    initialiser_Pioche(jeu->pioche);
+    
+    melanger_chevalets(jeu->pioche);
 
     creation_joueur(jeu->pioche, jeu->joueur1);
     creation_joueur(jeu->pioche, jeu->joueur2);
