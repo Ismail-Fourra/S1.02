@@ -1,28 +1,7 @@
 #pragma warning(disable:4996)
 #include "rail.h"
-/*void initRail(const char* mot1, const char* mot2, Rails* rail_jeu) {
-	
-	//Si le premier mot est plus proche de A (ordre alphabétique) que le second, alors le rail est composé du premier mot suivi du deuxième
-	if (strcmp(mot1, mot2) < 0) {
-		strcpy(rail_jeu->recto, mot1);
-		strcat(rail_jeu->recto, mot2);
-		printf("R: %s\n", rail_jeu->recto);
-		inverserRail(&rail_jeu);
-	}
+#include "joueur.h"
 
-	//Sinon, inversement
-	if (strcmp(mot1, mot2) > 0) {
-		strcpy(rail_jeu->recto, mot2);
-		strcat(rail_jeu->recto, mot1);
-		printf("R: %s\n", rail_jeu->recto);
-		inverserRail(&rail_jeu);
-	}
-
-	else;
-
-		
-}
-*/
 
 void inverserRail(Rails* rail_jeu) {
     
@@ -40,17 +19,17 @@ void inverserRail(Rails* rail_jeu) {
     printf("V: %s\n", rail_jeu->verso);
 }
 
-void initRail(const char* mot1, const char* mot2, Rails* rail_jeu) {
+void initRail(Joueur* joueur1, Joueur* joueur2, Rails* rail_jeu) {
     // Si le premier mot est plus proche de A (ordre alphabétique) que le second
     // alors le rail est composé du premier mot suivi du deuxième
-    if (strcmp(mot1, mot2) < 0) {
-        strncpy(rail_jeu->recto, mot1, MAX_RAIL - 1);
-        strncat(rail_jeu->recto, mot2, MAX_RAIL - strlen(rail_jeu->recto) - 1);
+    if (strcmp(joueur1->mot_initial, joueur2->mot_initial) < 0) {
+        strncpy(rail_jeu->recto, joueur1->mot_initial, MAX_RAIL - 1);
+        strncat(rail_jeu->recto, joueur2->mot_initial, MAX_RAIL - strlen(rail_jeu->recto) - 1);
     }
     // Sinon, inversement
-    else if (strcmp(mot1, mot2) > 0) {
-        strncpy(rail_jeu->recto, mot2, MAX_RAIL - 1);
-        strncat(rail_jeu->recto, mot1, MAX_RAIL - strlen(rail_jeu->recto) - 1);
+    else if (strcmp(joueur1->mot_initial, joueur2->mot_initial) > 0) {
+        strncpy(rail_jeu->recto, joueur2->mot_initial, MAX_RAIL - 1);
+        strncat(rail_jeu->recto, joueur1->mot_initial, MAX_RAIL - strlen(rail_jeu->recto) - 1);
     }
     else {
         printf("Erreur : les deux mots sont identiques.\n");
@@ -62,4 +41,18 @@ void initRail(const char* mot1, const char* mot2, Rails* rail_jeu) {
 
     printf("R: %s\n", rail_jeu->recto);
     inverserRail(rail_jeu);
+}
+
+
+void modifier_chevalet(const char* delete, Joueur* joueur_act) {
+    for (int i = 0; delete[i] != '\0'; ++i) { //On parcours l'entiereté du mot entré, jusqu'arriver au caractère nul
+
+        for (int j = 0; joueur_act->main_joueur[j] != '\0'; ++j) { //Pour chaque lettre, on regarde l'entièreté de la main du joueur..
+
+            if (delete[i] == joueur_act->main_joueur[j]) { //Si la lettre du mot correspond à une lettre du chevalet, on supprime la lettre de la main du joueur 
+                
+                break;
+            }
+        }
+    }
 }
