@@ -1,18 +1,23 @@
-#pragma once
-#define TAILLE_RAIL 9
+ï»¿
+
+#define MAX_RAIL 9
+#include <stdbool.h>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 typedef struct {
-	char recto[TAILLE_RAIL];
-	char verso[TAILLE_RAIL];
-}Rail;
+	char recto[MAX_RAIL];
+	char verso[MAX_RAIL];
+} Rails;
 
 
-void initRail(const char* mot1, const char* mot2, Rail* r);
+
 /**
-*@brief Une fonction permettant de vérifier l'ordre alphabétique des deux mots afin de créer le recto du rail
-*@param[in] mot1 Le  mot entré par le premier joueur
-*@param[in] mot2 Le  mot entré par le deuxième joueur
-*@param[out] rail Le rail, prenant ici la valeur des deux mots mis côte à côte (respectant l'ordre alphabétique)
+*@brief Une fonction permettant de vï¿½rifier l'ordre alphabï¿½tique des deux mots afin de crï¿½er le recto du rail
+*@param[in] joueur1->mot_initial Le  mot entrï¿½ par le premier joueur
+*@param[in] joueur2->mot_initial Le  mot entrï¿½ par le deuxiï¿½me joueur
+*@param[out] rail Le rail, prenant ici la valeur des deux mots mis cï¿½te ï¿½ cï¿½te (respectant l'ordre alphabï¿½tique)
 */
 
-void inverserRail(Rail* r);
+void inverserRail(Rails* rail_jeu);

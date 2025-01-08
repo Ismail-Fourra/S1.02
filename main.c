@@ -1,18 +1,18 @@
-// main.c
+ï»¿// main.c
 #include <stdio.h>
 #include <stdlib.h>
-#include "dictionnaire.h"  // Inclusion du fichier d'en-tête
+#include "dictionnaire.h"  // Inclusion du fichier d'en-tï¿½te
 #include "partie.h"
 #include "joueur.h"
-#include "rail.h"
- // Inclure le fichier où la fonction `demarrer_partie` est définie
+
+#include "pioche.h"
+ // Inclure le fichier oï¿½ la fonction `demarrer_partie` est dï¿½finie
 
 int main() {
-    Rail r;
-    char* mot1, mot2;
-    demander_mot1(&mot1);
-    demander_mot2(&mot2);
-    initRail(&mot1, &mot2, &r);
+
+    // Dï¿½marrer la partie
+    Partie* octoverso;
+    demarrer_partie(octoverso);
+
     return 0;
 }
-

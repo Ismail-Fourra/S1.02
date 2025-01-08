@@ -1,45 +1,36 @@
-// partie.c
+ï»¿// partie.c
 #pragma warning(disable : 4996)
 #include <stdio.h>
 #include <string.h>
 #include "pioche.h"
 #include "joueur.h"
+#include "rail.h"
+#include "partie.h"
 
 
-// Fonction pour démarrer la partie
-void demarrer_partie() {
-    srand(time(NULL)); // Initialiser le générateur aléatoire
 
-    // Création de la pioche
-    char* pioche[TAILLE_PIOCHE + 1];
-    remplir_pioche(pioche);
 
-    // Mélanger la pioche
-    melanger_chevalets(pioche, TAILLE_PIOCHE);
 
-    // Tirer et trier les mains des joueurs
-    char main_joueur1[TAILLE_MAIN + 1];
-    char main_joueur2[TAILLE_MAIN + 1];
-    int taille_pioche = TAILLE_PIOCHE;
 
-    // Tirer les mains des joueurs
-    tirer_main(pioche, main_joueur1, TAILLE_MAIN, &taille_pioche);
-    tirer_main(pioche, main_joueur2, TAILLE_MAIN, &taille_pioche);
+//Vï¿½rifie que le mot appartient ï¿½ la main du joueur
 
-    // Trier les mains des joueurs
-    trier_main(main_joueur1);
-    trier_main(main_joueur2);
 
-    // Afficher les mains des joueurs
-    printf("1 :  %s\n", main_joueur1);
-    printf("2 :  %s\n", main_joueur2);
 
-    // Demander à chaque joueur de saisir un mot de 4 lettres
-    char mot_joueur1[TAILLE_MAXMOTS], mot_joueur2[TAILLE_MAXMOTS];
 
-    // Saisie pour joueur 1
-    demander_mot(mot_joueur1, 1);
 
-    // Saisie pour joueur 2
-    demander_mot(mot_joueur2, 2);
+
+// Fonction pour dï¿½marrer la partie
+void demarrer_partie(Partie* jeu) {
+    srand(time(NULL));
+    remplir_pioche(jeu->pioche);
+    melanger_chevalets(jeu->pioche, TAILLE_PIOCHE);
+
+    creation_joueur(jeu->pioche, jeu->joueur1);
+    creation_joueur(jeu->pioche, jeu->joueur2);
+
+    Rails* rail_jeu[MAX_RAIL];
+    initRail(jeu->joueur1, jeu->joueur2, jeu->rail);
 }
+
+
+

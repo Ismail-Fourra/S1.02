@@ -1,28 +1,29 @@
-#pragma warning (disable : 4996)
-
-#include <string.h>
+#pragma warning(disable : 4996)
+#define MAX_LIGNE 28 //Le nombre maximum de lettre dans le plus long mot du dictionnaire de la langue fran?aise (+1)
 #include <stdio.h>
-#include "dictionnaire.h"
+#include <string.h>
+#include <stdbool.h>
 
-int estDansDictionnaire(const char* mot) {
-    FILE * fichier = fopen("osd4.txt", "r"); // Ouvre le fichier en mode lecture
-    if (fichier == NULL) {
-        perror("Erreur d'ouverture du fichier");
-        return 0;
+bool verifDico(const char* mot) {
+    FILE* dico = fopen("ods4.txt", "r");
+    if (dico == NULL) {
+        printf("Le dictionnaire est introuvable\n");
+        return false;
     }
-
-    char ligne[256]; // Tampon pour lire chaque ligne du fichier
-    while (fgets(ligne, sizeof(ligne), fichier)) {
-        // Supprime le caractère de fin de ligne, s'il existe
-        ligne[strcspn(ligne, "\n")] = '\0';
-
-        // Compare le mot avec la ligne actuelle
+    char ligne[MAX_LIGNE];
+    // Lire le fichier ligne par ligne
+    while (fgets(ligne, sizeof(ligne), dico)) {
+        ligne[strcspn(ligne, "\n")] = '\0'; // Supprime le saut de ligne pour pouvoir comparer la ligne avec le mot
+        // Comparer directement la ligne avec le mot
         if (strcmp(ligne, mot) == 0) {
-            fclose(fichier); // Ferme le fichier
-            return 1;     // Mot trouvé
+            fclose(dico);  // Fermer le fichier apr?s avoir trouv? le mot
+            return true;  // Le mot a ?t? trouv?
         }
     }
 
-    fclose(fichier); // Ferme le fichier
-    return 0;    // Mot non trouvé
+    fclose(dico);  // Fermer le fichier si le mot n'est pas trouv?
+    return false;
 }
+
+
+

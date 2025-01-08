@@ -1,7 +1,15 @@
-
-#define PARTIE_H
-
+ï»¿#pragma once
 #include "rail.h"  // Pour manipuler le rail
-#include "dictionnaire.h"  // Pour l'accès au dictionnaire
+#include "dictionnaire.h"// Pour l'accï¿½s au dictionnaire
+#include "joueur.h"
+#include "pioche.h"
+
+typedef struct {
+	char pioche[TAILLE_PIOCHE + 1];
+	Joueur joueur1;
+	Joueur joueur2;
+	Rails rail;
+}Partie;
 
 
+bool verifier_mot(const char* mot, const char* main_joueur);
