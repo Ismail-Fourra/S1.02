@@ -1,3 +1,4 @@
+#pragma once
 #define NB_LETTRES 21
 
 // Définition des constantes avec enum

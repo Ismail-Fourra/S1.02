@@ -1,4 +1,4 @@
-﻿
+﻿#pragma once
 
 #define MAX_RAIL 9
 #include <stdbool.h>
