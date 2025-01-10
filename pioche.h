@@ -18,4 +18,3 @@ typedef enum {
 
 
 
-void initialiserPioche(char* pioche);

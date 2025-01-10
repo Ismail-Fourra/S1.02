@@ -22,15 +22,12 @@
 // Fonction pour d�marrer la partie
 void demarrer_partie(Partie* jeu) {
     srand(time(NULL));
-    
+    int* nbJoueur = 1;
+    Joueur* joueurs;
     initialiser_Pioche(jeu->pioche);
-    
-    melanger_chevalets(jeu->pioche);
+    creation_joueur(jeu->pioche, jeu->joueur1, &nbJoueur);
+    creation_joueur(jeu->pioche, jeu->joueur2, &nbJoueur);
 
-    creation_joueur(jeu->pioche, jeu->joueur1);
-    creation_joueur(jeu->pioche, jeu->joueur2);
-
-    Rails* rail_jeu[MAX_RAIL];
     initRail(jeu->joueur1, jeu->joueur2, jeu->rail);
 }
 

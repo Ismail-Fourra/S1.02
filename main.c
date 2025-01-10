@@ -10,8 +10,9 @@
 int main() {
 
     // D�marrer la partie
+    int* nbJoueur = 0;
     Partie* octoverso;
-    demarrer_partie(&octoverso);
+    demarrer_partie(&octoverso, nbJoueur);
 
     return 0;
 }

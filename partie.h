@@ -7,7 +7,7 @@
 
 
 typedef struct {
-    char* pioche;
+    char* pioche[TAILLE_PIOCHE];
     Joueur joueur1;
     Joueur joueur2;
     Rails rail;
