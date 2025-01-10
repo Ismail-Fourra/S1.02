@@ -2,10 +2,11 @@
 #pragma warning(disable : 4996)
 #include <stdio.h>
 #include <string.h>
-#include "pioche.h"
-#include "joueur.h"
-#include "rail.h"
 #include "partie.h"
+#include "joueur.h"
+#include "pioche.h"
+#include "dictionnaire.h"
+#include "rail.h"
 
 
 
@@ -25,7 +26,10 @@ void initialiserPartie(Partie* jeu) {
     int *nbrJoueur = 1;
     int taille_pioche = TAILLE_PIOCHE;
 
-    jeu->pioche = (char*)malloc(TAILLE_PIOCHE * sizeof(char));
+  
+    jeu->pioche = (char*)malloc(TAILLE_PIOCHE-1 * sizeof(char));
+    if (jeu->pioche == NULL);
+    free(jeu->pioche);
 
     initialiser_Pioche(&(jeu->pioche));
 
@@ -35,14 +39,15 @@ void initialiserPartie(Partie* jeu) {
 
     do {
         demanderMot(&jeu->joueur1);
-    } while (!verifier_mot(jeu->joueur1));
+    } while (!verifier_mot(&jeu->joueur1));
 
     do {
         demanderMot(&jeu->joueur2);
-    } while (!verifier_mot(jeu->joueur2));
+    } while (!verifier_mot(&jeu->joueur2));
 
 
-    modifierMain
+    modifierMain(jeu->joueur1.mot_initial, &jeu->joueur1, TAILLE_MAIN);
+    modifierMain(jeu->joueur2.mot_initial, &jeu->joueur2, TAILLE_MAIN);
 
     initRail(jeu->joueur1, jeu->joueur2, jeu->rail);
 }

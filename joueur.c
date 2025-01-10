@@ -18,20 +18,22 @@
 
     bool verifier_mot(Joueur* joueur_act) {
         int temoin = 0;
-
+        
         if (strlen(joueur_act->mot_initial) != 4) {
             return false;
         }
 
         for (int i = 0; i < strlen(joueur_act->mot_initial); ++i) { //On parcours l'entiereté du mot entré, jusqu'arriver au caractère nul
-
+            
             for (int j = 0; j < TAILLE_MAIN; ++j) { //Pour chaque lettre, on regarde l'entièreté de la main du joueur..
 
                 if (joueur_act->mot_initial[i] == joueur_act->main_joueur[j]) { //Si la lettre du mot correspond à une lettre du chevalet, on incrémente la valeur témoin et on continue la boucle
                     ++temoin;
+                    joueur_act->main_joueur[j] = 0; //On enleve la lettre de la main
                     break;
                 }
             }
+
         }
 
         if (temoin == (TAILLE_MAXMOTS - 1)) {
@@ -66,7 +68,15 @@ void creation_joueur(char* pioche, Joueur* joueur_act, int* nbJoueur, int* taill
 
 }
 
-void modifierMain(char* delete, Joueur* joueur_act, int taille_main) {
+
+void ranger_main(Joueur* joueur_act){
+
+
+    }
+
+
+
+/* void modifierMain(char* delete, Joueur* joueur_act, int taille_main) {
     //reserve à deplacer et a continuer
     char* reserve[TAILLE_PIOCHE];
     int taille_reserve = 0;
@@ -89,18 +99,19 @@ void modifierMain(char* delete, Joueur* joueur_act, int taille_main) {
         for (int i = 0; i < taille_main; ++i) {
             if (reserve[i] != "\0") {
                 int temoin=0;
-                if (joueur_act->main_joueur[i] = "\0") {
+                if (joueur_act->main_joueur[i] = "0") {
                     ++temoin;
                 }
                 taille_main -= temoin;
             }
 
-            affiche_main(joueur_act, taille_main);
+           
 
         }
-
+        affiche_main(joueur_act, taille_main);
 }
 
+*/
 
 
 

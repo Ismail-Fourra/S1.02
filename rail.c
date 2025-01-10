@@ -1,7 +1,9 @@
 ﻿#pragma warning(disable:4996)
-#include "rail.h"
+#include "partie.h"
 #include "joueur.h"
-
+#include "pioche.h"
+#include "dictionnaire.h"
+#include "rail.h"
 
 void inverserRail(Rails* rail_jeu) {
 
