@@ -27,12 +27,19 @@ void initialiserPartie(Partie* jeu) {
 
     jeu->pioche = (char*)malloc(TAILLE_PIOCHE * sizeof(char));
 
-    initialiser_Pioche(jeu->pioche);
+    initialiser_Pioche(&(jeu->pioche));
 
-    
+    creation_joueur(&(jeu->pioche), &(jeu->joueur1), &nbrJoueur, &taille_pioche); 
+    creation_joueur(&(jeu->pioche), &(jeu->joueur2), &nbrJoueur, &taille_pioche);
 
-    creation_joueur(jeu->pioche, jeu->joueur1, &nbrJoueur, &taille_pioche);
-    creation_joueur(jeu->pioche, jeu->joueur2, &nbrJoueur, &taille_pioche);
+
+    do {
+        demanderMot(&jeu->joueur1);
+    } while (!verifier_mot(jeu->joueur1));
+
+    do {
+        demanderMot(&jeu->joueur2);
+    } while (!verifier_mot(jeu->joueur2));
 
     initRail(jeu->joueur1, jeu->joueur2, jeu->rail);
 }
