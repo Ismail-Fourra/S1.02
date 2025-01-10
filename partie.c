@@ -20,14 +20,19 @@
 
 
 // Fonction pour d�marrer la partie
-void demarrer_partie(Partie* jeu) {
+void initialiserPartie(Partie* jeu) {
     srand(time(NULL));
-    int* nbJoueur=1;
+    int *nbrJoueur = 1;
+    int taille_pioche = TAILLE_PIOCHE;
+
+    jeu->pioche = (char*)malloc(TAILLE_PIOCHE * sizeof(char));
 
     initialiser_Pioche(jeu->pioche);
 
-    creation_joueur(jeu->pioche, jeu->joueur1, &nbJoueur);
-    creation_joueur(jeu->pioche, jeu->joueur2, &nbJoueur);
+    
+
+    creation_joueur(jeu->pioche, jeu->joueur1, &nbrJoueur, &taille_pioche);
+    creation_joueur(jeu->pioche, jeu->joueur2, &nbrJoueur, &taille_pioche);
 
     initRail(jeu->joueur1, jeu->joueur2, jeu->rail);
 }

@@ -44,23 +44,19 @@ bool verifier_mot(const char* mot, Joueur* joueur_act) {
     return false;
 }
 
-void creation_joueur(char* pioche, Joueur* joueur_act, int* nbJoueur) {
-     *nbJoueur = 1;
-    
-    creer_main(&pioche, &joueur_act);
-    tirer_main(&pioche, &joueur_act, nbJoueur);
-    trier_main(&pioche,&joueur_act);
 
-    saisirMot(&joueur_act, nbJoueur);
-
+void creation_joueur(char* pioche, Joueur* joueur_act, int* nbJoueur, int* taille_pioche) {
+     
+    joueur_act->NoJoueur = *nbJoueur;
+    tirer_main(pioche, joueur_act, taille_pioche);
+    trier_et_afficher_main(joueur_act);
+   
     ++(*nbJoueur);
 
 
 }
 
-void affiche_main(Joueur* joueur_act) {
-    printf("%d :  %s\n", joueur_act->NoJoueur, joueur_act->main_joueur);
-}
+
 
 
 

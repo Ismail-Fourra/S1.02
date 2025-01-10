@@ -9,8 +9,8 @@ enum { TAILLE_MAXMOTS = 5 };
 
 typedef struct {
 	int NoJoueur;
-	char* main_joueur[TAILLE_MAIN];
-	char* mot_initial[TAILLE_MAXMOTS];
+	char main_joueur[TAILLE_MAIN];
+	char mot_initial[TAILLE_MAXMOTS];
 }Joueur;
 
 

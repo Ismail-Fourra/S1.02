@@ -12,7 +12,10 @@ int main() {
     // D�marrer la partie
 
     Partie octoverso;
-    demarrer_partie(&octoverso);
+
+    initialiserPartie(&octoverso);
 
     return 0;
 }
+
+
