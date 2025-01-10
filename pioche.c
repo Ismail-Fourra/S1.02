@@ -59,6 +59,8 @@ void tirer_main(char* pioche, Joueur* joueur_act, int nb) {
             --taille_pioche_dynamique;
         }
     }
+    
+
 
     //Reduction taille pioche
     char* pioche_temporaire = (char*)realloc(pioche, taille_pioche_dynamique * sizeof(char));
