@@ -41,6 +41,9 @@ void initialiserPartie(Partie* jeu) {
         demanderMot(&jeu->joueur2);
     } while (!verifier_mot(jeu->joueur2));
 
+
+    modifierMain
+
     initRail(jeu->joueur1, jeu->joueur2, jeu->rail);
 }
 

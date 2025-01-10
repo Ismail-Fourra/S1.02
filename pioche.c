@@ -59,10 +59,10 @@ void tirer_main(char* pioche, Joueur* joueur_act, int* taille_pioche) {
    
 }
 
-void affiche_main(Joueur* joueur_act) {
+void affiche_main(Joueur* joueur_act, int taille_main) {
 
     printf("%d : ", joueur_act->NoJoueur);
-    for (int i = 0; i < TAILLE_MAIN; ++i) {
+    for (int i = 0; i < taille_main; ++i) {
         printf("%c", joueur_act->main_joueur[i]);  // Affiche chaque lettre dans la main
     }
     printf("\n");
@@ -82,7 +82,7 @@ void trier_et_afficher_main(Joueur* joueur_act) {
         }
     }
 
-    affiche_main(joueur_act);
+    affiche_main(joueur_act, TAILLE_MAIN);
 }
 
 

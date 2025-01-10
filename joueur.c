@@ -13,6 +13,9 @@
 
 
 
+
+
+
     bool verifier_mot(Joueur* joueur_act) {
         int temoin = 0;
 
@@ -63,8 +66,40 @@ void creation_joueur(char* pioche, Joueur* joueur_act, int* nbJoueur, int* taill
 
 }
 
+void modifierMain(char* delete, Joueur* joueur_act, int taille_main) {
+    //reserve à deplacer et a continuer
+    char* reserve[TAILLE_PIOCHE];
+    int taille_reserve = 0;
+
+    for (int i = 0; i < strlen(delete); ++i) { //On parcours l'entiereté du mot entré, jusqu'arriver au caractère nul
+
+        for (int j = 0; j < taille_main; ++j) { //Pour chaque lettre, on regarde l'entièreté de la main du joueur..
+
+            if (delete[i] == joueur_act->main_joueur[j]) { //Si la lettre du mot correspond à une lettre du chevalet, on supprime la lettre du tableau
+                joueur_act->main_joueur[taille_reserve] = joueur_act->main_joueur[j];
+                ++taille_reserve;
+                joueur_act->main_joueur[j] = "\0";
+                break;
+            }
+        }
 
 
+    }
+
+        for (int i = 0; i < taille_main; ++i) {
+            if (reserve[i] != "\0") {
+                int temoin=0;
+                if (joueur_act->main_joueur[i] = "\0") {
+                    ++temoin;
+                }
+                taille_main -= temoin;
+            }
+
+            affiche_main(joueur_act, taille_main);
+
+        }
+
+}
 
 
 
