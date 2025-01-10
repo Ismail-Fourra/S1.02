@@ -22,10 +22,10 @@
 // Fonction pour d�marrer la partie
 void demarrer_partie(Partie* jeu) {
     srand(time(NULL));
-    int* nbJoueur = 1;
-    
+    int* nbJoueur=1;
+
     initialiser_Pioche(jeu->pioche);
-  
+
     creation_joueur(jeu->pioche, jeu->joueur1, &nbJoueur);
     creation_joueur(jeu->pioche, jeu->joueur2, &nbJoueur);
 

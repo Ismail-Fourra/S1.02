@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <malloc.h>
 #include "joueur.h"
 #include "pioche.h"
 #include "partie.h"
@@ -10,21 +11,23 @@
 
 
 // Fonction d'initialisation de la pioche
-void initialiser_Pioche(char** pioche) {
+void initialiser_Pioche(char* pioche) {
 
     char lettresJeu[NB_LETTRES] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V' };
     int frequencesJeu[NB_LETTRES] = { 9, 1, 2, 3, 14, 1, 1, 1, 7, 1, 5, 3, 6, 5, 2, 1, 6, 7, 6, 5, 2 };
     int somme = 0;
    
-    *pioche = (char*)malloc(TAILLE_PIOCHE * sizeof(char));
+    pioche = (char*)malloc(TAILLE_PIOCHE+1 * sizeof(char));
     for (int i = 0; i < NB_LETTRES; ++i) {
         for (int j = somme; j < frequencesJeu[i]+somme ; ++j) {
             pioche[j] = lettresJeu[i];
         }
         somme += frequencesJeu[i];
          
-    }
-        
+    } pioche[TAILLE_PIOCHE + 1] = '\0';
+
+ 
+
 }
 
 void creer_main(char* pioche, Joueur* joueur_act) {
