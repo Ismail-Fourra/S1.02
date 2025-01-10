@@ -15,39 +15,55 @@ void initialiser_Pioche(char* pioche) {
     char lettresJeu[NB_LETTRES] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V' };
     int frequencesJeu[NB_LETTRES] = { 9, 1, 2, 3, 14, 1, 1, 1, 7, 1, 5, 3, 6, 5, 2, 1, 6, 7, 6, 5, 2 };
     int somme = 0;
-
-
+   
+    pioche = (char*)malloc(TAILLE_PIOCHE * sizeof(char));
     for (int i = 0; i < NB_LETTRES; ++i) {
         for (int j = somme; j < frequencesJeu[i]+somme ; ++j) {
             pioche[j] = lettresJeu[i];
         }
         somme += frequencesJeu[i];
-        
+         
     }
-
-
+        
 }
 
+void creer_main(char* pioche, Joueur* joueur_act) {
+    for (int i = TAILLE_PIOCHE - 1; i > 0; i--) { // Parcourir de taille_pioche - 1 à 1
+        int j = rand() % (i + 1); // Générer un indice aléatoire valide
+        // Échanger les caractères entre les positions i et j
+        char temp = pioche[i];
+        pioche[i] = pioche[j];
+        pioche[j] = temp;
 
-// Fonction pour tirer une main de chevalets
-void tirer_main(char* pioche,Joueur* joueur_act) {
-    int taille_pio = TAILLE_PIOCHE;
-        
-
-
-
-    for (int i = 0; i < TAILLE_MAIN; i++) {
-        int aleatoire = rand() % taille_pio;
-
-
-        joueur_act->main_joueur[i] = pioche[aleatoire];
-
-        // Réduire la pioche en décalant les lettres restantes vers la gauche
-        for (int j = aleatoire; j < taille_pio - 1; j++) {
-            pioche[j] = pioche[j + 1];
-        }
-        taille_pio--; // Réduire la taille de la pioche
     }
+}
+    
+// Fonction pour tirer une main de chevalets
+void tirer_main(char* pioche, Joueur* joueur_act, int nb) {
+  
+    //PIOCHE joueur 1
+
+    int taille_pioche_dynamique = TAILLE_PIOCHE;
+
+    if (nb == 1) {
+        for (int i = 0; i > TAILLE_MAIN; ++i) {
+            joueur_act->main_joueur[i] = pioche[TAILLE_PIOCHE - i];
+            --taille_pioche_dynamique;
+        }
+    }
+
+    //PIOCHE joueur 2
+    if (nb == 2) {
+        for (int i = TAILLE_MAIN; i > 0; --i) {
+            joueur_act->main_joueur[i] = pioche[TAILLE_PIOCHE - i - (TAILLE_MAIN)];
+            --taille_pioche_dynamique;
+        }
+    }
+
+    //Reduction taille pioche
+    char* pioche_temporaire = (char*)realloc(pioche, taille_pioche_dynamique * sizeof(char));
+    free(pioche);
+    pioche = pioche_temporaire;
 }
 
 // Fonction pour trier la main d'un joueur
@@ -63,3 +79,5 @@ void trier_main(Joueur* joueur_act) {
         }
     }
 }
+
+

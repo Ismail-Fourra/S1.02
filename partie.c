@@ -23,8 +23,9 @@
 void demarrer_partie(Partie* jeu) {
     srand(time(NULL));
     int* nbJoueur = 1;
-    Joueur* joueurs;
+    
     initialiser_Pioche(jeu->pioche);
+  
     creation_joueur(jeu->pioche, jeu->joueur1, &nbJoueur);
     creation_joueur(jeu->pioche, jeu->joueur2, &nbJoueur);
 
