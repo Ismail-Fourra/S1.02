@@ -41,13 +41,22 @@ void initialiser_Pioche(char* pioche) {
 
 // Fonction pour tirer une main de chevalets
 void tirer_main(char* pioche, Joueur* joueur_act, int* taille_pioche) {
+  
+  
+    //PIOCHE joueur 1
 
+
+
+   
         for (int i = 0; i < *taille_pioche; ++i) {
             joueur_act->main_joueur[i] = pioche[*taille_pioche - i-1];
             
         }
         *taille_pioche -= TAILLE_MAIN;
 
+     
+     
+   
 }
 
 void affiche_main(Joueur* joueur_act, int taille_main) {

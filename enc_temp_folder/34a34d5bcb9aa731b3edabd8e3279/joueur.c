@@ -27,9 +27,7 @@
             for (int j = 0; j < TAILLE_MAIN; ++j) { //Pour chaque lettre, on regarde l'entièreté de la main du joueur..
 
                 if (joueur_act->mot_initial[i] == joueur_act->main_joueur[j]){ //Si la lettre du mot correspond à une lettre du chevalet, on incrémente la valeur témoin et on continue la boucle
-                    joueur_act->main_joueur[j] = 'z';
-
-                  
+                    joueur_act->main_joueur[j] = '\0';
                     ++temoin;
                     break;
                 }

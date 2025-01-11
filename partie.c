@@ -43,11 +43,11 @@ void initialiserPartie(Partie* jeu) {
 
     do {
         demanderMot(&jeu->joueur2);
-    } while (!verifier_mot(&jeu->joueur2));
+    } while (!verifier_mot(&jeu->joueur2) && (!strcmp(jeu->joueur1.mot_initial, jeu->joueur2.mot_initial)==0));
 
 
-    modifierMain(jeu->joueur1.mot_initial, &jeu->joueur1, TAILLE_MAIN);
-    modifierMain(jeu->joueur2.mot_initial, &jeu->joueur2, TAILLE_MAIN);
+    ranger_main(&jeu->joueur1, TAILLE_MAIN);
+    ranger_main(&jeu->joueur2, TAILLE_MAIN);
 
     initRail(jeu->joueur1, jeu->joueur2, jeu->rail);
 }
